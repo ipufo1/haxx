@@ -3043,6 +3043,7 @@ function Library:CreateWindow(...)
         Parent = TabArea;
     });
 
+    Window.TabListLayout = TabListLayout;
     local TabContainer = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
@@ -3089,6 +3090,21 @@ function Library:CreateWindow(...)
             Text = Name;
             ZIndex = 1;
             Parent = TabButton;
+        });
+
+        local TabSelectionBar = Library:Create('Frame', {
+            Size = UDim2.new(1, 0, 0, 2);
+            ZIndex = 100;
+            BorderSizePixel = 0;
+            BackgroundColor3 = Library.AccentColor;
+            BackgroundTransparency = 1;
+            Visible = true;
+
+            Parent = TabButton;
+        })
+
+        Library:AddToRegistry(TabSelectionBar, {
+            BackgroundColor3 = 'AccentColor';
         });
 
         local Blocker = Library:Create('Frame', {
@@ -3169,6 +3185,7 @@ function Library:CreateWindow(...)
             end;
 
             Blocker.BackgroundTransparency = 0;
+            TweenService:Create(TabSelectionBar, TweenInfo.new(.25), {BackgroundTransparency = 0}):Play()
             TabButton.BackgroundColor3 = Library.MainColor;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'MainColor';
             TabFrame.Visible = true;
@@ -3176,6 +3193,7 @@ function Library:CreateWindow(...)
 
         function Tab:HideTab()
             Blocker.BackgroundTransparency = 1;
+            TweenService:Create(TabSelectionBar, TweenInfo.new(.25), {BackgroundTransparency = 1}):Play()
             TabButton.BackgroundColor3 = Library.BackgroundColor;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'BackgroundColor';
             TabFrame.Visible = false;
