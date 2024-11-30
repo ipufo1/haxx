@@ -134,8 +134,4 @@ game:GetService('RunService').RenderStepped:Connect(function()
     end
 end)
 
-local a = tick()
-while (tick() - a) < 5 do
-    EventLog:Log(RandomValue(NerdSentences), 1)
-    task.wait(.1);
-end
+return EventLog, EventLogs;
