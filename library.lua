@@ -9,6 +9,7 @@ local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = Players.LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
+wait = task.wait;
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
 local ScreenGui = Instance.new('ScreenGui');
@@ -2924,7 +2925,6 @@ function Library:Notify(Text, Time)
     }, true);
 
     pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 8 + 4, 0, YSize), 'Out', 'Quad', 0.4, true);
-
     task.spawn(function()
         wait(Time or 5);
 
@@ -2934,6 +2934,8 @@ function Library:Notify(Text, Time)
 
         NotifyOuter:Destroy();
     end);
+
+    return NotifyLabel;
 end;
 
 function Library:CreateWindow(...)
