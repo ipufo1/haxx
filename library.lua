@@ -1329,7 +1329,7 @@ do
 
         Options[Idx] = KeyPicker;
 
-        return self;
+        return KeyPicker, self;
     end;
 
     BaseAddons.__index = Funcs;
