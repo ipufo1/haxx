@@ -1,10 +1,10 @@
-local InputService = game:GetService('UserInputService');
-local TextService = game:GetService('TextService');
+local InputService = cloneref(game:GetService('UserInputService'));
+local TextService = cloneref(game:GetService('TextService'));
 local CoreGui = (type(gethui) == 'function' and gethui()) or (type(cloneref) == 'function' and cloneref(game:GetService('CoreGui'))) or game:GetService('CoreGui');
-local Teams = game:GetService('Teams');
-local Players = game:GetService('Players');
-local RunService = game:GetService('RunService')
-local TweenService = game:GetService('TweenService');
+local Teams = cloneref(game:GetService('Teams'));
+local Players = cloneref(game:GetService('Players'));
+local RunService = cloneref(game:GetService('RunService'));
+local TweenService = cloneref(game:GetService('TweenService'));
 local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = Players.LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
@@ -87,7 +87,6 @@ local function GetTeamsString()
     end;
 
     table.sort(TeamList, function(str1, str2) return str1 < str2 end);
-    
     return TeamList;
 end;
 
@@ -998,7 +997,7 @@ do
 
         Options[Idx] = ColorPicker;
 
-        return self;
+        return ColorPicker, self;
     end;
 
     function Funcs:AddKeyPicker(Idx, Info)
